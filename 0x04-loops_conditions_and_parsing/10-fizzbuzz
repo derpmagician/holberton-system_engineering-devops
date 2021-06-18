@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# FizzBuzz script from 1 to 100
+for n in {1..100}; do
+    f=
+    ((n % 3)) || f=Fizz
+    ((n % 5)) || f+=Buzz
+    echo ${f:-$n}
+  done
