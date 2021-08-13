@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Uses ssh to connect to my provisioned server using my private key
+ssh -i ~/.ssh/holberton ubuntu@34.138.251.13
