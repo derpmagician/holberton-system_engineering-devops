@@ -1,7 +1,7 @@
 # Install Nginx web server with Puppet
 
 $link = 'https://www.youtube.com/watch?v=QH2-TGUlwu4'
-$content = "\trewrite ^/redirect_me/$ ${link} permanent;"
+$content = "rewrite ^/redirect_me/$ ${link} permanent;"
 
 package { 'nginx':
   ensure => installed,
@@ -14,7 +14,7 @@ file_line { 'Add redirection, 301':
   line   => $content,,
 }
 
-file { '/var/www/html/index.html':
+file { '/var/www/html/index.nginx-debian.html':
   content => 'Holberton School',
 }
 
