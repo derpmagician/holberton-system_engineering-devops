@@ -4,10 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: teal;
+            color:gold;
+        }
+
+        main {
+            margin: 0px 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .big {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .big-1 {
+            background-color: darkcyan;
+            height: 5rem;
+        }
+        .big-2 {
+            background-color: cadetblue;
+        }
+        
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back {
+            background-color: darkgreen;
+            color: white;
+            border: 1px solid;
+            position: absolute;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5rem;
+            height: 3rem;
+            width: 5rem;
+            transition:  1s;
+        }
+
+        .back:hover {
+            width: 7rem;
+            height: 6rem;
+            color: gold;
+        }
+        </style>
 </head>
-<body style="background-color: teal; color:gold; display: flex; justify-content:center; align-items: center">
-    <h1>404 NOT FOUND PLEASE DO NOT CRY</h1>
+<body>
+    <main>
+        <h1 class="big big-1">404 NOT FOUND </h1>
+        <h2 class="big big-2">PLEASE DO NOT CRY</h2>
+        <div class="center">
+            <div class="back" onclick="window.history.back()">Go Back</div>
+        </div>
+    </main>
+    
     
 </body>
 </html>
