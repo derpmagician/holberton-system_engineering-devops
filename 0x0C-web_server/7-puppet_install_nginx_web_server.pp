@@ -1,24 +1,48 @@
-# Install Nginx web server with Puppet
+# This manifest configures an nginx server
 
-$link = 'https://www.youtube.com/watch?v=QH2-TGUlwu4'
-$content = "rewrite ^/redirect_me/$ ${link} permanent;"
+$defaultconfig = "# Default server configuration
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm;
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
+        error_page 404 /404.html;
+        location =/404.html {
+                root /var/www/html;
+                internal;
+        }
+}
+"
 
 package { 'nginx':
-  ensure => installed,
+  ensure  => 'installed',
 }
 
-file_line { 'Add redirection, 301':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => $content,,
+file { 'Create default index.html':
+  ensure  => 'present',
+  name    => 'index.html',
+  path    => '/var/www/html/index.nginx-debian.html',
+  content => "Holberton School is cool!\n"
 }
 
-file { '/var/www/html/index.nginx-debian.html':
-  content => 'Holberton School',
+file { 'Create default 404.html':
+  ensure  => 'present',
+  name    => '404.html',
+  path    => '/var/www/html/404.html',
+  content => "Ceci n'est pas une page\n"
+}
+
+file { 'Create nginx configuration file':
+  ensure  => 'present',
+  name    => 'default',
+  path    => '/etc/nginx/sites-available/default',
+  content => $defaultconfig
 }
 
 service { 'nginx':
-  ensure  => running,
-  require => Package['nginx'],
+  ensure  => 'running',
+  require => Package['nginx']
 }
