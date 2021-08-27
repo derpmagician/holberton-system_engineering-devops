@@ -1,25 +1,14 @@
 #!/usr/bin/env bash
-# Scans a subdomain record type and shows which IP is pointing to that record
+# Dig subdomain to show info
 
-domain="$1"                                         # Domain name to audit.
-subdomain="$2"                                      # Specific subdomain to audit.
-
-lookup_host() {
-    host_record=$(
-        dig "$1" | grep -A1 'ANSWER SECTION:' | tail -n 1
-    )
-
-    echo "$host_record" |
-    awk '{print "The subdomain","'"$subdomain"'","is a",$4,"record and points to",$5}'
-}
-
-if [ "$domain" ] && [ "$subdomain" ] ; then         # Show information for the specified subdomain.
-    host="$subdomain.$domain"
-    lookup_host "$host"
-elif [ "$domain" ] ; then                           # Show information for its subdomains
-    def_subdomains=(www lb-01 web-01 web-02)        # 'www', 'lb-01', 'web-01' and 'web-02'.
-    for subdomain in "${def_subdomains[@]}" ; do
-        host="$subdomain.$domain"
-        lookup_host "$host"
-    done
+if [ "$#" -eq 1 ]
+then
+    dom="www lb-01 web-01 web-02"
+else
+    dom=$2
 fi
+for sub in $dom
+do
+    echo -n "The subdomain $sub "
+    dig "$sub.$1" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{ print "is a " $4 " record and points to " $5}'
+done
