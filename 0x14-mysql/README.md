@@ -13,3 +13,10 @@ CREATE USER IF NOT EXISTS 'holberton_user'@'localhost' IDENTIFIED BY 'projectcor
 GRANT REPLICATION CLIENT ON *.* TO 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
 FLUSH PRIVILEGES;
 quit
+sudo mysql -h localhost -u root -p -e "SHOW GRANTS FOR 'holberton_user'@'localhost';"
+
+CREATE DATABASE IF NOT EXISTS tyrell_corp;
+USE tyrell_corp;
+CREATE TABLE IF NOT EXISTS nexus6 (id INT(10) NOT NULL  AUTO_INCREMENT, name VARCHAR(30), PRIMARY KEY (id));
+GRANT ALL PRIVILEGES ON tyrell_corp.* TO 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
+
