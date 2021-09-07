@@ -2,4 +2,5 @@
 # nginx must be running as user nginx on 8080
 chmod 744 /etc/nginx/nginx.conf
 sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+pkill apache2
 sudo -u nginx service nginx start
