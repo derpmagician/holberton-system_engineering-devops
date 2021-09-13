@@ -34,7 +34,7 @@ if __name__ == '__main__':
         mydata = {
             "task": todo.get("title"),
             "completed": todo.get("completed"),
-            "username": todo.get("username")
+            "username": u_username
             }
         u_tasks.append(mydata)
 
