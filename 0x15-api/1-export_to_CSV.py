@@ -28,15 +28,11 @@ if __name__ == '__main__':
     # grab number of tasks
     n_tasks = len(res_todos)
 
-
-    with open(filename, 'w', encoding='utf-8') as csv_file:
-        my_writer = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_ALL)
-
+    with open(filename, 'w', encoding='utf-8') as csvfile:
+        my_writer = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
         for elem in res_todos:
             # grab completion status
             status = elem.get('completed')
-
             # grab title
             title = elem.get('title')
-
             my_writer.writerow([employee_id, u_username, status, title])
