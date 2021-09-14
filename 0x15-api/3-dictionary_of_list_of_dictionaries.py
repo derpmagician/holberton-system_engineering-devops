@@ -13,15 +13,6 @@ if __name__ == '__main__':
     res_user = requests.get(users_api).json()
     res_todos = requests.get(todos_api).json()
 
-    """
-    for user in res_user:
-        username = user['username']
-        for todo in res_todos:
-            if todo['userId'] == user['id']:
-                # mylist = []
-                print(todo['userId'])
-    """
-
     main_dict = {}
     for user in res_user:
         username = user['username']
