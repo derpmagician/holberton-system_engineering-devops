@@ -22,22 +22,22 @@ if __name__ == '__main__':
                 print(todo['userId'])
     """
 
-    dicx = {}
+    main_dict = {}
     for user in res_user:
         username = user['username']
-        ll = []
+        task_list = []
         for todos in res_todos:
             if todos['userId'] == user['id']:
                 di = {}
                 di['username'] = username
                 di['task'] = todos['title']
                 di['completed'] = todos['completed']
-                ll.append(di)
-        dicx[user['id']] = ll
+                task_list.append(di)
+        main_dict[user['id']] = task_list
 
     """
     with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(dicx, f)
+        json.dump(main_dict, f)
     """
     with open(filename, 'w', encoding='utf-8') as jsonfile:
-        jsonfile.write(dumps(dicx))
+        jsonfile.write(dumps(main_dict))
