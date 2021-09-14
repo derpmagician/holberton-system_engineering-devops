@@ -41,5 +41,3 @@ if __name__ == '__main__':
     """
     with open(filename, 'w', encoding='utf-8') as jsonfile:
         jsonfile.write(dumps(dicx))
-
-
