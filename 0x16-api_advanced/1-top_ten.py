@@ -20,6 +20,6 @@ def top_ten(subreddit):
 
     if res.status_code == 200:
         for post in hot.get('children', []):
-            print(post.get('data', {}).get('title', ''))
+            print(post.get('data').get('title'))
     else:
         return print('None')
