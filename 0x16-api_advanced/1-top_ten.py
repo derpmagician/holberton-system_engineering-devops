@@ -16,10 +16,10 @@ def top_ten(subreddit):
     payload = {'limit': '10'}
 
     res = rq.get(url, headers=userAg, params=payload, allow_redirects=False)
-    hot = res.json().get('data').get('children')
+    hot = res.json().get('data', None)
 
     if res.status_code == 200:
-        for post in hot:
-             print(post.get('data', {}).get('title', ''))
+        for post in hot.get('children', []):
+            print(post.get('data', {}).get('title', ''))
     else:
         return print('None')
