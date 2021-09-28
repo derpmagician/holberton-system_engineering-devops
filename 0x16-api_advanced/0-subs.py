@@ -11,9 +11,9 @@ def number_of_subscribers(subreddit):
     """
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
 
-    uAgent = {'user-agent' : 'derp'}
+    uAgent = {'user-agent': 'derp'}
 
-    res = requests.get(url, headers= uAgent, allow_redirects=False)
+    res = requests.get(url, headers=uAgent, allow_redirects=False)
     if res.status_code == 200:
         return res.json().get('data').get('subscribers')
     else:
